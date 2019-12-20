@@ -82,7 +82,8 @@ var clojureYaml string = `image:
 
 vscode:
   extensions:
-	- avli.clojure@0.11.1:LAV1SbBlP0gU7J8kduhQvQ==`
+  	  - avli.clojure@0.11.1:LAV1SbBlP0gU7J8kduhQvQ==
+`
 var haskellDockerfile string = `FROM gitpod/workspace-full
 
 USER gitpod
@@ -106,7 +107,8 @@ vscode:
     - justusadam.language-haskell@2.6.0:CvYnp3YmQPTuto0m1di+1A==
     - phoityne.phoityne-vscode@0.0.24:FTkd1r93lYs3z95fjRROAg==
     - hoovercj.haskell-linter@0.0.6:VpJluXvOyr9Iw7TIKg2Oyg==
-    - dramforever.vscode-ghc-simple@0.1.13:X3A6Dr3LYAP8MxXBh/hb1A==`
+	- dramforever.vscode-ghc-simple@0.1.13:X3A6Dr3LYAP8MxXBh/hb1A==
+`
 var dotNetDockerfile string = `FROM gitpod/workspace-full
 
 USER gitpod
