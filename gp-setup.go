@@ -6,6 +6,7 @@ import (
 
 	"github.com/manifoldco/promptui"
 )
+
 var juliaDockerFile string =`FROM gitpod/workspace-full
 
 USER gitpod
@@ -27,6 +28,7 @@ RUN sudo apt-get update \
 
 # Give control back to Gitpod Layer
 USER root`
+
 var juliaYaml string = `image:
   file: .gitpod.Dockerfile
 
@@ -37,6 +39,7 @@ vscode:
   extensions:
     - julialang.language-julia@0.12.3:lgRyBd8rjwUpMGG0C5GAig==
 `
+
 var nimDockerFile string = `FROM gitpod/workspace-full
 
 USER gitpod
@@ -44,6 +47,7 @@ USER gitpod
 RUN sudo apt-get update \
 	&& sudo apt-get install -y \
 		nim`
+
 var nimYaml string = `image:
   file: .gitpod.Dockerfile
 
@@ -52,7 +56,8 @@ tasks:
 
 vscode:
   extensions:
-    - kosz78.nim@0.6.3:w7n1wKOFVkz9yIqgRYT7lQ==`
+	- kosz78.nim@0.6.3:w7n1wKOFVkz9yIqgRYT7lQ==`
+
 func initInteractive() {
 	isError := false
 	START:
@@ -124,27 +129,14 @@ func initInteractive() {
 		}
 }
 func juliaInit()  {
-	gitpodDockerfile, gitpodDockerfileErr := os.Create(".gitpod.Dockerfile")
-	gitpodYaml, gitpodYamlErr := os.Create(".gitpod.yml")
-	if gitpodDockerfileErr != nil {
-		fmt.Println("\033[1;31mAlready exists\033[0m")
-	}
-	if gitpodYamlErr != nil {
-		fmt.Println("\033[1;31mAlready exists\033[0m")
-	}
+	gitpodDockerfile, _ := os.Create(".gitpod.Dockerfile")
+	gitpodYaml, _ := os.Create(".gitpod.yml")
 	gitpodDockerfile.WriteString(juliaDockerFile)
 	gitpodYaml.WriteString(juliaYaml)
-
 }
 func nimInit()  {
-	gitpodDockerfile, gitpodDockerfileErr := os.Create(".gitpod.Dockerfile")
-	gitpodYaml, gitpodYamlErr := os.Create(".gitpod.yml")
-	if gitpodDockerfileErr != nil {
-		fmt.Println("\033[1;31mAlready exists\033[0m")
-	}
-	if gitpodYamlErr != nil {
-		fmt.Println("\033[1;31mAlready exists\033[0m")
-	}
+	gitpodDockerfile, _ := os.Create(".gitpod.Dockerfile")
+	gitpodYaml, _ := os.Create(".gitpod.yml")
 	gitpodDockerfile.WriteString(nimDockerFile)
 	gitpodYaml.WriteString(nimYaml)
 
