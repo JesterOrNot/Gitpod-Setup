@@ -1,4 +1,4 @@
 #!/bin/bash
 go get -v -t -d ./...
 go build -o gp-setup *.go
-./gp-setup init
+mv gp-setup $GOPATH/bin
