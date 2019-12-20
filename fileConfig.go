@@ -130,5 +130,6 @@ var dotNetYaml string = `image:
 vscode:
   extensions:
     - Ionide.Ionide-fsharp@4.1.0:vk6avJmuBqlMwZEelzdnZQ==
-	- ms-vscode.csharp@1.21.4:lLV3lBwYKRTJ3QAQjtNMaQ==
+    - ms-vscode.csharp@1.21.4:lLV3lBwYKRTJ3QAQjtNMaQ==
+
 `
