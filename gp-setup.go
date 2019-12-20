@@ -6,9 +6,34 @@ import (
 
 	"github.com/manifoldco/promptui"
 )
+var juliaDockerFile string =`FROM gitpod/workspace-full\n\n
 
+USER gitpod
+
+# Install Julia
+RUN sudo apt-get update \
+	&& sudo apt-get install -y \
+		build-essential \
+		libatomic1 \
+		python \
+		gfortran \
+		perl \
+		wget \
+		m4 \
+		cmake \
+		pkg-config \
+		julia \
+	&& sudo rm -rf /var/lib/apt/lists/*\n\n
+
+# Give control back to Gitpod Layer\n
+USER root`
 func initInteractive() {
+	isError := false
 	START:
+		if isError {
+			fmt.Println("\033[1;31mError Reading Option\033[0m")
+			isError = false
+		}
 		{
 			startPrompt := promptui.Select{
 				Label: "What are you configuring",
@@ -16,17 +41,15 @@ func initInteractive() {
 			}
 			_, result, err := startPrompt.Run()
 			if err != nil {
-				println("Error, exiting...")
-				os.Exit(1)
+				exit()
 			}
 			switch result {
-			case "Never Mind":
-				fmt.Println("Ok, bye!")
-				os.Exit(0)
-			case "Shell":
-				goto SHELL
-			case "Language":
-				goto Language
+				case "Never Mind":
+					exit()
+				case "Shell":
+					goto SHELL
+				case "Language":
+					goto Language
 			}
 		}
 	SHELL:
@@ -37,15 +60,16 @@ func initInteractive() {
 			}
 			_, result1, err1 := shellPrompt.Run()
 			if err1 != nil {
-				println("Error, exiting...")
-				os.Exit(1)
+				exit()
 			}
 			switch result1 {
-			case "Never Mind":
-				fmt.Println("Ok, bye!")
-				os.Exit(0)
-			case "Back":
-				goto START
+				case "Never Mind":
+					exit()
+				case "Back":
+					goto START
+				default:
+					isError = true
+					goto START
 			}
 		}
 	Language:
@@ -56,19 +80,38 @@ func initInteractive() {
 			}
 			_, result2, err2 := langPrompt.Run()
 			if err2 != nil {
-				println("Error, exiting...")
-				os.Exit(1)
+				exit()
 			}
 			switch result2 {
-			case "Never Mind":
-				fmt.Println("Ok, bye!")
-				os.Exit(0)
-			case "Back":
-				goto START
+				case "Julia":
+					juliaInit()
+				case "Never Mind":
+					exit()
+				case "Back":
+					goto START
+				default:
+					isError = true
+					goto START
 			}
 		}
 }
+func juliaInit()  {
+	gitpodDockerfile, gitpodDockerfileErr := os.Create(".gitpod.Dockerfile")
+	gitpodYaml, gitpodYamlErr := os.Create(".gitpod.yml")
+	if gitpodDockerfileErr != nil {
+		fmt.Println("\033[1;31mAlready exists\033[0m")
+	}
+	if gitpodYamlErr != nil {
+		fmt.Println("\033[1;31mAlready exists\033[0m")
+	}
+	gitpodDockerfile.WriteString(juliaDockerFile)
+	gitpodYaml.WriteString("writes\n")
 
+}
+func exit() {
+	fmt.Println("Ok, bye!")
+	os.Exit(0)
+}
 func main() {
 	initInteractive()
 }
