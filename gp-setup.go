@@ -99,24 +99,31 @@ Language:
 }
 func juliaInit() {
 	initBase(juliaDockerFile, juliaYaml)
+	fmt.Println("Julia Setup Complete!")
 }
 func nimInit() {
 	initBase(nimDockerFile, nimYaml)
+	fmt.Println("Nim Setup Complete!")
 }
 func hyInit() {
 	initBase(hyDockerfile, hyYaml)
+	fmt.Println("Hy Setup Complete!")
 }
 func clojureInit() {
 	initBase(clojureDockerfile, clojureYaml)
+	fmt.Println("Clojure Setup Complete!")
 }
 func haskellInit() {
 	initBase(haskellDockerfile, haskellYaml)
+	fmt.Println("Haskell Setup Complete!")
 }
 func dotNetInit() {
 	initBase(dotNetDockerfile, dotNetYaml)
+	fmt.Println(".NET Setup Complete!")
 }
 func zshInit() {
 	initBase(zshDockerfile, zshYaml)
+	fmt.Println("ZSh Setup Complete!")
 }
 func initBase(dockerFile, Yaml string) {
 	gitpodDockerfile, _ := os.Create(".gitpod.Dockerfile")
