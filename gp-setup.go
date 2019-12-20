@@ -3,10 +3,17 @@ package main
 import (
 	"fmt"
 	"github.com/manifoldco/promptui"
+	"os"
 )
 
 func main() {
-	initInteractive()
+	if len(os.Args) == 1 {
+		fmt.Println("Help:\n    init: initialize gitpod")
+		return
+	}
+	if os.Args[1] == "init" {
+		initInteractive()
+	}
 }
 
 func initInteractive() {
