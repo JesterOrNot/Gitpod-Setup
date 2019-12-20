@@ -27,6 +27,16 @@ RUN sudo apt-get update \
 
 # Give control back to Gitpod Layer\n
 USER root`
+var juliaYaml string = `image:
+  file: .gitpod.Dockerfile
+
+tasks:
+- command: julia --version
+
+vscode:
+  extensions:
+    - julialang.language-julia@0.12.3:lgRyBd8rjwUpMGG0C5GAig==
+`
 func initInteractive() {
 	isError := false
 	START:
@@ -105,7 +115,7 @@ func juliaInit()  {
 		fmt.Println("\033[1;31mAlready exists\033[0m")
 	}
 	gitpodDockerfile.WriteString(juliaDockerFile)
-	gitpodYaml.WriteString("writes\n")
+	gitpodYaml.WriteString(juliaYaml)
 
 }
 func exit() {
