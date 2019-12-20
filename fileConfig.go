@@ -103,11 +103,11 @@ var haskellYaml string = `image:
 
 vscode:
   extensions:
-    - alanz.vscode-hie-server@0.0.28:j/YAJtXUGGbb8xSSz1i/CQ==
-    - justusadam.language-haskell@2.6.0:CvYnp3YmQPTuto0m1di+1A==
-    - phoityne.phoityne-vscode@0.0.24:FTkd1r93lYs3z95fjRROAg==
-    - hoovercj.haskell-linter@0.0.6:VpJluXvOyr9Iw7TIKg2Oyg==
-	- dramforever.vscode-ghc-simple@0.1.13:X3A6Dr3LYAP8MxXBh/hb1A==
+      - alanz.vscode-hie-server@0.0.28:j/YAJtXUGGbb8xSSz1i/CQ==
+      - justusadam.language-haskell@2.6.0:CvYnp3YmQPTuto0m1di+1A==
+      - phoityne.phoityne-vscode@0.0.24:FTkd1r93lYs3z95fjRROAg==
+      - hoovercj.haskell-linter@0.0.6:VpJluXvOyr9Iw7TIKg2Oyg==
+      - dramforever.vscode-ghc-simple@0.1.13:X3A6Dr3LYAP8MxXBh/hb1A==
 `
 var dotNetDockerfile string = `FROM gitpod/workspace-full
 
