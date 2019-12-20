@@ -43,6 +43,9 @@ func initInteractive() {
 				exit()
 			}
 			switch result1 {
+				case "ZSH":
+					zshInit()
+					return
 				case "Never Mind":
 					exit()
 				case "Back":
@@ -102,6 +105,9 @@ func haskellInit() {
 }
 func dotNetInit() {
 	initBase(dotNetDockerfile, dotNetYaml)
+}
+func zshInit() {
+	initBase(zshDockerfile, zshYaml)
 }
 func initBase(dockerFile, Yaml string) {
 	gitpodDockerfile, _ := os.Create(".gitpod.Dockerfile")

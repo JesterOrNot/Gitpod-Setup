@@ -49,7 +49,7 @@ tasks:
 
 vscode:
   extensions:
-	- kosz78.nim@0.6.3:w7n1wKOFVkz9yIqgRYT7lQ==`
+  	- kosz78.nim@0.6.3:w7n1wKOFVkz9yIqgRYT7lQ==`
 
 var hyDockerfile string = `FROM gitpod/workspace-full
 
@@ -132,4 +132,21 @@ vscode:
     - Ionide.Ionide-fsharp@4.1.0:vk6avJmuBqlMwZEelzdnZQ==
     - ms-vscode.csharp@1.21.4:lLV3lBwYKRTJ3QAQjtNMaQ==
 
+`
+var zshDockerfile string = `FROM gitpod/workspace-full
+
+USER root
+
+RUN apt-get update \
+   && apt-get install -y zsh \
+   && apt-get clean \
+   && rm -rf /var/cache/apt/* \
+   && rm -rf /var/lib/apt/lists/* \
+   && rm -rf /tmp/*
+`
+var zshYaml string = `image:
+  file: .gitpod.Dockerfile
+
+tasks:
+- command: zsh
 `
