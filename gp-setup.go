@@ -9,23 +9,25 @@ import (
 
 func initInteractive() {
 	START:
-		startPrompt := promptui.Select{
-			Label: "What are you configuring",
-			Items: []string{"Language", "Shell", "Never Mind"},
-		}
-		_, result, err := startPrompt.Run()
-		if err != nil {
-			println("Error, exiting...")
-			os.Exit(1)
-		}
-		switch result {
-		case "Never Mind":
-			fmt.Println("Ok, bye!")
-			os.Exit(0)
-		case "Shell":
-			goto SHELL
-		case "Language":
-			goto Language
+		{
+			startPrompt := promptui.Select{
+				Label: "What are you configuring",
+				Items: []string{"Language", "Shell", "Never Mind"},
+			}
+			_, result, err := startPrompt.Run()
+			if err != nil {
+				println("Error, exiting...")
+				os.Exit(1)
+			}
+			switch result {
+			case "Never Mind":
+				fmt.Println("Ok, bye!")
+				os.Exit(0)
+			case "Shell":
+				goto SHELL
+			case "Language":
+				goto Language
+			}
 		}
 	SHELL:
 		{
