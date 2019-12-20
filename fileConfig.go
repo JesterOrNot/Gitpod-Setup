@@ -151,5 +151,5 @@ var zshYaml string = `image:
   file: .gitpod.Dockerfile
 
 tasks:
-- command: zsh
+  - command: zsh
 `
