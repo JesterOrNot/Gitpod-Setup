@@ -36,7 +36,7 @@ func initInteractive() {
 		{
 			shellPrompt := promptui.Select{
 				Label: "What shell are you configuring",
-				Items: []string{"Fish", "ZSH", "Back", "Never Mind"},
+				Items: []string{"ZSH", "Back", "Never Mind"},
 			}
 			_, result1, err1 := shellPrompt.Run()
 			if err1 != nil {
