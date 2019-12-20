@@ -3,3 +3,4 @@ image:
 
 tasks:
   - init: mkdir ../go ../go/bin && ./build
+    command: gp-setup
