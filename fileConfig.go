@@ -63,7 +63,8 @@ var hyYaml string = `image:
 
 vscode:
   extensions:
-	- xuqinghan.vscode-hy@0.0.4:Utf282betrZISZjOJLTZlg==`
+  	  - xuqinghan.vscode-hy@0.0.4:Utf282betrZISZjOJLTZlg==
+`
 var clojureDockerfile string = `FROM gitpod/workspace-full
 
 USER gitpod
