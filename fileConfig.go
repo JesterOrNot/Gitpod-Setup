@@ -106,3 +106,29 @@ vscode:
     - phoityne.phoityne-vscode@0.0.24:FTkd1r93lYs3z95fjRROAg==
     - hoovercj.haskell-linter@0.0.6:VpJluXvOyr9Iw7TIKg2Oyg==
     - dramforever.vscode-ghc-simple@0.1.13:X3A6Dr3LYAP8MxXBh/hb1A==`
+var dotNetDockerfile string = `FROM gitpod/workspace-full
+
+USER gitpod
+
+# Install F#
+RUN sudo apt-get update \
+	&& sudo apt-get install -y \
+		fsharp
+
+# Install .NET
+RUN wget -q https://packages.microsoft.com/config/ubuntu/16.04/packages-microsoft-prod.deb -O packages-microsoft-prod.deb \
+	&& sudo dpkg -i packages-microsoft-prod.deb \
+	&& sudo apt-get update \
+	&& sudo apt-get update \
+	&& sudo apt-get install -y \
+		apt-transport-https \
+		dotnet-sdk-3.0
+`
+var dotNetYaml string = `image:
+  file: .gitpod.Dockerfile
+
+vscode:
+  extensions:
+    - Ionide.Ionide-fsharp@4.1.0:vk6avJmuBqlMwZEelzdnZQ==
+	- ms-vscode.csharp@1.21.4:lLV3lBwYKRTJ3QAQjtNMaQ==
+`

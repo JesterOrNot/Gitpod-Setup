@@ -56,7 +56,7 @@ func initInteractive() {
 		{
 			langPrompt := promptui.Select{
 				Label: "What Language are you configuring",
-				Items: []string{"Julia", "Nim", "Hy", "Clojure", "Haskell", "Back", "Never Mind"},
+				Items: []string{"Julia", "Nim", "Hy", "Clojure", "Haskell", ".NET", "Back", "Never Mind"},
 			}
 			_, result2, err2 := langPrompt.Run()
 			if err2 != nil {
@@ -73,6 +73,8 @@ func initInteractive() {
 					clojureInit()
 				case "Haskell":
 					haskellInit()
+				case ".NET":
+					dotNetInit()
 				case "Never Mind":
 					exit()
 				case "Back":
@@ -97,6 +99,9 @@ func clojureInit()  {
 }
 func haskellInit() {
 	initBase(haskellDockerfile, haskellYaml)
+}
+func dotNetInit() {
+	initBase(dotNetDockerfile, dotNetYaml)
 }
 func initBase(dockerFile, Yaml string) {
 	gitpodDockerfile, _ := os.Create(".gitpod.Dockerfile")
