@@ -69,6 +69,8 @@ func initInteractive() {
 					nimInit()
 				case "Hy":
 					hyInit()
+				case "Clojure":
+					clojureInit()
 				case "Never Mind":
 					exit()
 				case "Back":
@@ -88,6 +90,12 @@ func nimInit() {
 func hyInit() {
 	initBase(hyDockerfile, hyYaml)
 }
+func clojureInit()  {
+	initBase(clojureDockerfile, clojureYaml)
+}
+// func haskellInit() {
+// 	initBase(haskellDockerfile, haskellYaml)
+// }
 func initBase(dockerFile, Yaml string) {
 	gitpodDockerfile, _ := os.Create(".gitpod.Dockerfile")
 	gitpodYaml, _ := os.Create(".gitpod.yml")
