@@ -67,6 +67,8 @@ func initInteractive() {
 					juliaInit()
 				case "Nim":
 					nimInit()
+				case "Hy":
+					hyInit()
 				case "Never Mind":
 					exit()
 				case "Back":
@@ -78,17 +80,19 @@ func initInteractive() {
 		}
 }
 func juliaInit()  {
-	gitpodDockerfile, _ := os.Create(".gitpod.Dockerfile")
-	gitpodYaml, _ := os.Create(".gitpod.yml")
-	gitpodDockerfile.WriteString(juliaDockerFile)
-	gitpodYaml.WriteString(juliaYaml)
+	initBase(juliaDockerFile, juliaYaml)
 }
-func nimInit()  {
+func nimInit() {
+	initBase(nimDockerFile, nimYaml)
+}
+func hyInit() {
+	initBase(hyDockerfile, hyYaml)
+}
+func initBase(dockerFile, Yaml string) {
 	gitpodDockerfile, _ := os.Create(".gitpod.Dockerfile")
 	gitpodYaml, _ := os.Create(".gitpod.yml")
-	gitpodDockerfile.WriteString(nimDockerFile)
-	gitpodYaml.WriteString(nimYaml)
-
+	gitpodDockerfile.WriteString(dockerFile)
+	gitpodYaml.WriteString(Yaml)
 }
 func exit() {
 	fmt.Println("Ok, bye!")

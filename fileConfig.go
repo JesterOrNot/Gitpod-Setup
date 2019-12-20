@@ -50,3 +50,17 @@ tasks:
 vscode:
   extensions:
 	- kosz78.nim@0.6.3:w7n1wKOFVkz9yIqgRYT7lQ==`
+
+var hyDockerfile string = `FROM gitpod/workspace-full
+
+USER gitpod
+
+RUN pip3 install hy --user
+`
+
+var hyYaml string = `image:
+  file: .gitpod.Dockerfile
+
+vscode:
+  extensions:
+    - xuqinghan.vscode-hy@0.0.4:Utf282betrZISZjOJLTZlg==`
