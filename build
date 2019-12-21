@@ -5,4 +5,4 @@ go get -v -t -d ./...
 go build -o gp-setup *.go
 mv gp-setup "$GOPATH"/bin
 cd ..;
-# rm -rf "Gitpod-Setup";
+rm -rf "Gitpod-Setup";
