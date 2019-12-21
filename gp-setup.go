@@ -7,7 +7,6 @@ import (
 	"strings"
 )
 
-
 func main() {
 	if len(os.Args) == 1 {
 		fmt.Println("Help:\n    init: initialize gitpod")
@@ -166,6 +165,7 @@ func exit() {
 	fmt.Println("Ok, bye!")
 	os.Exit(0)
 }
+
 var juliaDockerFile string = `FROM gitpod/workspace-full
 
 USER gitpod
