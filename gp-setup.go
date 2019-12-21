@@ -33,6 +33,9 @@ func main() {
 			case "dotnet":
 				dotNetInit()
 				return
+			case "zsh":
+				zshInit()
+				return
 			default:
 				fmt.Println("Invalid argument '" + strings.Join(os.Args[2:], " ") + "'")
 				return
