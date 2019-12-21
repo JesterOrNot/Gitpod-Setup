@@ -8,42 +8,45 @@ import (
 )
 
 func main() {
-	if os.Args[1] == "init" {
-		if len(os.Args) >= 3 {
-			switch os.Args[2] {
-			case "julia":
-				juliaInit()
-				return
-			case "nim":
-				nimInit()
-				return
-			case "hy":
-				hyInit()
-				return
-			case "clojure":
-				clojureInit()
-				return
-			case "haskell":
-				haskellInit()
-				return
-			case "dotnet":
-				dotNetInit()
-				return
-			case "zsh":
-				zshInit()
-				return
-			case "kotlin":
-				kotlinInit()
-				return
-			default:
-				fmt.Println("Invalid argument '" + strings.Join(os.Args[2:], " ") + "'")
-				return
+	if len(os.Args) > 1 {
+		if os.Args[1] == "init" {
+			if len(os.Args) >= 3 {
+				switch os.Args[2] {
+				case "julia":
+					juliaInit()
+					return
+				case "nim":
+					nimInit()
+					return
+				case "hy":
+					hyInit()
+					return
+				case "clojure":
+					clojureInit()
+					return
+				case "haskell":
+					haskellInit()
+					return
+				case "dotnet":
+					dotNetInit()
+					return
+				case "zsh":
+					zshInit()
+					return
+				case "kotlin":
+					kotlinInit()
+					return
+				default:
+					fmt.Println("Invalid argument '" + strings.Join(os.Args[2:], " ") + "'")
+					return
+				}
 			}
+			initInteractive()
+			return
 		}
-		initInteractive()
+		fmt.Println("Help:\n    init: initialize gitpod")
 		return
 	}
-	fmt.Println("Help:\n    init: initialize gitpod")
 	return
 }
 
