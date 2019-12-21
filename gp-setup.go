@@ -32,6 +32,9 @@ func main() {
 			case "zsh":
 				zshInit()
 				return
+			case "kotlin":
+				kotlinInit()
+				return
 			default:
 				fmt.Println("Invalid argument '" + strings.Join(os.Args[2:], " ") + "'")
 				return
@@ -96,7 +99,7 @@ Language:
 	{
 		langPrompt := promptui.Select{
 			Label: "What Language are you configuring",
-			Items: []string{"Julia", "Nim", "Hy", "Clojure", "Haskell", ".NET", "Back", "Never Mind"},
+			Items: []string{"Julia", "Nim", "Hy", "Clojure", "Haskell", ".NET", "Kotlin", "Back", "Never Mind"},
 		}
 		_, result2, err2 := langPrompt.Run()
 		if err2 != nil {
@@ -115,6 +118,8 @@ Language:
 			haskellInit()
 		case ".NET":
 			dotNetInit()
+		case "Kotlin":
+			kotlinInit()
 		case "Never Mind":
 			exit()
 		case "Back":
@@ -151,7 +156,11 @@ func dotNetInit() {
 }
 func zshInit() {
 	initBase(zshDockerfile, zshYaml)
-	fmt.Println("ZSh Setup Complete!")
+	fmt.Println("ZSH Setup Complete!")
+}
+func kotlinInit()  {
+	initBase(kotlinDockerfile, kotlinYaml)
+	fmt.Println("Kotlin Setup Complete!")
 }
 func initBase(dockerFile, Yaml string) {
 	gitpodDockerfile, _ := os.Create(".gitpod.Dockerfile")
@@ -160,8 +169,8 @@ func initBase(dockerFile, Yaml string) {
 	gitpodYaml.WriteString(Yaml)
 }
 func exit() {
-	prompt := promptui.Prompt {
-		Label: "Are you sure",
+	prompt := promptui.Prompt{
+		Label:     "Are you sure",
 		IsConfirm: true,
 	}
 	result, err := prompt.Run()
@@ -329,3 +338,16 @@ var zshYaml string = `image:
 tasks:
   - command: zsh
 `
+var kotlinDockerfile string = `FROM gitpod/workspace-full
+
+USER gitpod
+
+RUN brew install kotlin
+`
+var kotlinYaml string = `image:
+  file: .gitpod.Dockerfile
+
+vscode:
+  extensions:
+    - mathiasfrohlich.Kotlin@1.7.0:9xQZtwTUg4bdXHCMyxM7vQ==
+    - fwcd.kotlin@0.2.11:moh8IDanzsIlhtK2IeiLmQ==`
