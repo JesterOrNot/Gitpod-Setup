@@ -161,7 +161,7 @@ func zshInit() {
 	initBase(zshDockerfile, zshYaml)
 	fmt.Println("ZSH Setup Complete!")
 }
-func kotlinInit()  {
+func kotlinInit() {
 	initBase(kotlinDockerfile, kotlinYaml)
 	fmt.Println("Kotlin Setup Complete!")
 }
