@@ -8,10 +8,6 @@ import (
 )
 
 func main() {
-	if len(os.Args) == 1 {
-		fmt.Println("Help:\n    init: initialize gitpod")
-		return
-	}
 	if os.Args[1] == "init" {
 		if len(os.Args) >= 3 {
 			switch os.Args[2] {
@@ -44,6 +40,8 @@ func main() {
 		initInteractive()
 		return
 	}
+	fmt.Println("Help:\n    init: initialize gitpod")
+	return
 }
 
 func initInteractive() {
@@ -162,8 +160,20 @@ func initBase(dockerFile, Yaml string) {
 	gitpodYaml.WriteString(Yaml)
 }
 func exit() {
-	fmt.Println("Ok, bye!")
-	os.Exit(0)
+	prompt := promptui.Prompt {
+		Label: "Are you sure",
+		IsConfirm: true,
+	}
+	result, err := prompt.Run()
+	if err != nil {
+		return
+	}
+	if strings.ToLower(result) == "y" {
+		os.Exit(0)
+	} else {
+		return
+	}
+	fmt.Printf("You choose %q\n", result)
 }
 
 var juliaDockerFile string = `FROM gitpod/workspace-full
